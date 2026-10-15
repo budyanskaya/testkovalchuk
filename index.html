@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест: Имитационное моделирование (Расширенный)</title>
+    <title>Тест: Имитационное моделирование</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -101,10 +101,6 @@
             background-color: #f8d7da;
             border-color: #dc3545;
         }
-        .option-item.disabled {
-            pointer-events: none;
-            opacity: 0.8;
-        }
         .btn-submit {
             display: block;
             width: 100%;
@@ -146,18 +142,6 @@
             font-weight: bold;
             color: #2c3e50;
         }
-        .explanation {
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 10px;
-            font-style: italic;
-        }
-        .error-message {
-            color: #e74c3c;
-            font-weight: bold;
-            display: none;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -167,7 +151,6 @@
     <p class="subtitle">Тест составлен на основе лекционного материала. 68 вопросов для глубокой проверки знаний.</p>
     <div id="quiz-container"></div>
     <button class="btn-submit" id="submit-btn" onclick="submitQuiz()" disabled>Завершить тест</button>
-    <div class="error-message" id="error-message">Пожалуйста, ответьте на все вопросы перед завершением.</div>
     
     <div class="results" id="results">
         <h2>Результаты тестирования</h2>
@@ -178,7 +161,6 @@
 </div>
 
 <script>
-    // Массив вопросов на основе презентации (68 вопросов)
     const questionsData = [
         // --- Блок 1: Основы и AnyLogic ---
         { type: "single", question: "Какие три метода моделирования поддерживает AnyLogic?", options: ["Дискретно-событийное, агентное, системная динамика", "Аналитическое, численное, диаграммное", "Статистическое, вероятностное, когнитивное", "Имитационное, математическое, компьютерное"], correct: 0, explanation: "Слайд 2: AnyLogic поддерживает дискретно-событийное, агентное моделирование и системную динамику." },
@@ -253,4 +235,190 @@
         { type: "single", question: "Что такое 'Системный подход'?", options: ["Направление методологии научного познания, в основе которого рассмотрение объекта как системы", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 58: Системный подход — направление методологии научного познания, в основе которого рассмотрение объекта как системы." },
         { type: "single", question: "Что такое 'Системный анализ'?", options: ["Методология проведения исследования, включающая выделение этапов и методику их выполнения", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 59: Системный анализ — методология (совокупность методических приемов) проведения исследования." },
         { type: "single", question: "Что такое 'Валидация' имитационной модели?", options: ["Оценка требуемой точности и адекватности имитационной модели", "Перевод модели на язык программирования", "Прогон программы на компьютере", "Построение концептуальной модели"], correct: 0, explanation: "Слайд 85: Валидация — оценка требуемой точности и адекватности имитационной модели." },
-        { type: "single", question: "Что такое 'Стратегическое планирование машинного эксперимента'?", options: ["Разработка плана эксперимента", "Проведение вычислительного эксперимента", "Обработка результатов", "Построение модели"], correct: 0, explanation: "Сла
+        { type: "single", question: "Что такое 'Стратегическое планирование машинного эксперимента'?", options: ["Разработка плана эксперимента", "Проведение вычислительного эксперимента", "Обработка результатов", "Построение модели"], correct: 0, explanation: "Слайд 87: Стратегическое планирование машинного эксперимента — разработка плана эксперимента." },
+        { type: "single", question: "Что такое 'Тактическое планирование машинного эксперимента'?", options: ["Проведение вычислительного эксперимента", "Разработка плана эксперимента", "Обработка результатов", "Построение модели"], correct: 0, explanation: "Слайд 87: Тактическое планирование — проведение вычислительного эксперимента." },
+        { type: "single", question: "Какой тип моделирования используется для анализа сложных систем с нелинейными обратными связями?", options: ["Системная динамика", "Дискретно-событийное моделирование", "Агентное моделирование", "Статистическое моделирование"], correct: 0, explanation: "Слайд 35: Системная динамика используется для анализа сложных систем с нелинейными обратными связями." },
+        { type: "single", question: "Что такое 'Ситуационное моделирование'?", options: ["Метод управления сложными техническими и организационными системами", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 45: Ситуационное моделирование — метод управления сложными техническими и организационными системами." },
+        { type: "single", question: "Что такое 'Когнитивное моделирование'?", options: ["Анализ и принятие решений в плохо определенных ситуациях", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 42: Когнитивное моделирование — анализ и принятие решений в плохо определенных ситуациях." },
+        { type: "single", question: "Что такое 'Агентное моделирование'?", options: ["Моделирование поведения децентрализованных агентов и их взаимодействия", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 39: Агентное моделирование — моделирование поведения децентрализованных агентов и их взаимодействия." },
+        { type: "single", question: "Что такое 'Дискретно-событийное моделирование'?", options: ["Моделирование системы как последовательности событий", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 33: Дискретно-событийное моделирование — моделирование системы как последовательности событий." },
+        { type: "single", question: "Что такое 'Системная динамика'?", options: ["Моделирование причинно-следственных связей и глобальных влияний", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 35: Системная динамика — моделирование причинно-следственных связей и глобальных влияний." },
+        { type: "single", question: "Что такое 'Статистическое моделирование'?", options: ["Моделирование на основе методов Монте-Карло", "Метод решения математических задач", "Способ программирования", "Тип моделирования"], correct: 0, explanation: "Слайд 26: Статистическое моделирование — методы Монте-Карло." }
+    ];
+
+    let shuffledQuestions = [];
+    let userAnswers = [];
+    let totalQuestions = questionsData.length;
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function initQuiz() {
+        shuffledQuestions = shuffleArray([...questionsData]);
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = '';
+        userAnswers = new Array(shuffledQuestions.length).fill(null);
+
+        shuffledQuestions.forEach((q, index) => {
+            const block = document.createElement('div');
+            block.className = 'question-block';
+            block.id = `q-block-${index}`;
+            
+            let optionsHTML = '';
+            let shuffledOptions = [];
+            let correctIndex = q.correct;
+
+            if (q.type === 'single' || q.type === 'boolean' || q.type === 'dropdown') {
+                let indices = q.options.map((_, i) => i);
+                shuffledOptions = shuffleArray([...indices]);
+                correctIndex = shuffledOptions.indexOf(q.correct);
+                q.shuffledCorrect = correctIndex;
+                q.shuffledOptions = shuffledOptions.map(i => q.options[i]);
+            } else if (q.type === 'multiple') {
+                let indices = q.options.map((_, i) => i);
+                shuffledOptions = shuffleArray([...indices]);
+                q.shuffledOptions = shuffledOptions.map(i => q.options[i]);
+                q.shuffledCorrect = q.correct.map(c => shuffledOptions.indexOf(c));
+            }
+
+            let questionHTML = `<div class="question-text">${index + 1}. ${q.question}</div>`;
+            
+            if (q.type === 'single' || q.type === 'boolean') {
+                questionHTML += `<div class="options" id="options-${index}">`;
+                q.shuffledOptions.forEach((opt, optIndex) => {
+                    questionHTML += `<label class="option-item" id="opt-${index}-${optIndex}"><input type="radio" name="q${index}" value="${optIndex}" onchange="handleAnswer(${index}, this.value)"> ${opt}</label>`;
+                });
+                questionHTML += `</div>`;
+            } else if (q.type === 'multiple') {
+                questionHTML += `<div class="options" id="options-${index}">`;
+                q.shuffledOptions.forEach((opt, optIndex) => {
+                    questionHTML += `<label class="option-item" id="opt-${index}-${optIndex}"><input type="checkbox" name="q${index}" value="${optIndex}" onchange="handleMultipleAnswer(${index})"> ${opt}</label>`;
+                });
+                questionHTML += `</div>`;
+            } else if (q.type === 'dropdown') {
+                questionHTML += `<div class="options"><select id="select-${index}" onchange="handleDropdownAnswer(${index}, this.value)"><option value="-1">-- Выберите ответ --</option>`;
+                q.shuffledOptions.forEach((opt, optIndex) => {
+                    questionHTML += `<option value="${optIndex}">${opt}</option>`;
+                });
+                questionHTML += `</select></div>`;
+            }
+
+            block.innerHTML = questionHTML;
+            container.appendChild(block);
+        });
+    }
+
+    window.handleAnswer = function(qIndex, value) {
+        userAnswers[qIndex] = parseInt(value);
+        const options = document.querySelectorAll(`#options-${qIndex} .option-item`);
+        options.forEach(opt => opt.classList.remove('selected-correct', 'selected-incorrect'));
+        const selectedOpt = document.getElementById(`opt-${qIndex}-${value}`);
+        if (selectedOpt) {
+            const q = shuffledQuestions[qIndex];
+            if (parseInt(value) === q.shuffledCorrect) {
+                selectedOpt.classList.add('selected-correct');
+            } else {
+                selectedOpt.classList.add('selected-incorrect');
+                const correctOpt = document.getElementById(`opt-${qIndex}-${q.shuffledCorrect}`);
+                if (correctOpt) correctOpt.classList.add('selected-correct');
+            }
+        }
+        checkAllAnswered();
+    };
+
+    window.handleMultipleAnswer = function(qIndex) {
+        const checkboxes = document.querySelectorAll(`input[name="q${qIndex}"]:checked`);
+        const selectedValues = Array.from(checkboxes).map(cb => parseInt(cb.value));
+        userAnswers[qIndex] = selectedValues;
+        const q = shuffledQuestions[qIndex];
+        const options = document.querySelectorAll(`#options-${qIndex} .option-item`);
+        options.forEach(opt => opt.classList.remove('selected-correct', 'selected-incorrect'));
+        const correctSet = new Set(q.shuffledCorrect);
+        const selectedSet = new Set(selectedValues);
+        let isFullyCorrect = correctSet.size === selectedSet.size && [...correctSet].every(val => selectedSet.has(val));
+        selectedValues.forEach(val => {
+            const opt = document.getElementById(`opt-${qIndex}-${val}`);
+            if (opt) {
+                if (correctSet.has(val)) opt.classList.add('selected-correct');
+                else opt.classList.add('selected-incorrect');
+            }
+        });
+        if (!isFullyCorrect) {
+            q.shuffledCorrect.forEach(val => {
+                const opt = document.getElementById(`opt-${qIndex}-${val}`);
+                if (opt) opt.classList.add('selected-correct');
+            });
+        }
+        checkAllAnswered();
+    };
+
+    window.handleDropdownAnswer = function(qIndex, value) {
+        userAnswers[qIndex] = parseInt(value);
+        const select = document.getElementById(`select-${qIndex}`);
+        const q = shuffledQuestions[qIndex];
+        select.style.borderColor = '#ddd';
+        select.style.backgroundColor = '#fff';
+        if (parseInt(value) === q.shuffledCorrect) {
+            select.style.borderColor = '#28a745';
+            select.style.backgroundColor = '#d4edda';
+        } else {
+            select.style.borderColor = '#dc3545';
+            select.style.backgroundColor = '#f8d7da';
+        }
+        checkAllAnswered();
+    };
+
+    function checkAllAnswered() {
+        const allAnswered = userAnswers.every(ans => ans !== null && ans !== -1 && (!Array.isArray(ans) || ans.length > 0));
+        document.getElementById('submit-btn').disabled = !allAnswered;
+    }
+
+    window.submitQuiz = function() {
+        let correctCount = 0;
+        shuffledQuestions.forEach((q, index) => {
+            const userAns = userAnswers[index];
+            let isCorrect = false;
+            if (q.type === 'single' || q.type === 'boolean' || q.type === 'dropdown') {
+                isCorrect = (userAns === q.shuffledCorrect);
+            } else if (q.type === 'multiple') {
+                const correctSet = new Set(q.shuffledCorrect);
+                const userSet = new Set(userAns);
+                isCorrect = correctSet.size === userSet.size && [...correctSet].every(val => userSet.has(val));
+            }
+            if (isCorrect) correctCount++;
+            const block = document.getElementById(`q-block-${index}`);
+            if (isCorrect) {
+                block.classList.add('correct-highlight');
+                block.classList.remove('incorrect-highlight');
+            } else {
+                block.classList.add('incorrect-highlight');
+                block.classList.remove('correct-highlight');
+            }
+        });
+
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('score-display').textContent = correctCount;
+        document.getElementById('total-display').textContent = totalQuestions;
+        const percentage = Math.round((correctCount / totalQuestions) * 100);
+        document.getElementById('percentage-display').textContent = `Процент правильных ответов: ${percentage}%`;
+        let grade = '';
+        if (percentage >= 90) grade = 'Отлично!';
+        else if (percentage >= 75) grade = 'Хорошо!';
+        else if (percentage >= 60) grade = 'Удовлетворительно';
+        else grade = 'Неудовлетворительно. Стоит повторить материал.';
+        document.getElementById('grade-display').textContent = grade;
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('input, select').forEach(el => el.disabled = true);
+        document.getElementById('submit-btn').disabled = true;
+    };
+
+    window.onload = initQuiz;
+</script>
+
+</body>
+</html>
